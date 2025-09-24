@@ -9,7 +9,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 if (
   !supabaseUrl ||
   !supabaseAnonKey ||
-  supabaseUrl === "https://example.supabase.co"
+  supabaseUrl === "https://lgntpxtvyginbwjnnxny.supabase.co"
 ) {
   console.warn("Supabase configuration missing or using placeholder values");
 }
@@ -17,6 +17,6 @@ if (
 export const supabase =
   supabaseUrl &&
   supabaseAnonKey &&
-  supabaseUrl !== "https://example.supabase.co"
+  supabaseUrl !== "https://lgntpxtvyginbwjnnxny.supabase.co"
     ? createClient(supabaseUrl, supabaseAnonKey)
     : null;
