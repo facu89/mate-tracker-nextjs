@@ -4,12 +4,6 @@ import { mockData } from "@/lib/mockData";
 
 export async function GET() {
   try {
-    // Check if Supabase is configured
-    if (!supabase) {
-      console.warn("Supabase not configured, returning mock data");
-      return NextResponse.json(mockData);
-    }
-
     // Obtener todas las entradas del día actual
     const today = new Date().toISOString().split("T")[0];
 
@@ -75,17 +69,6 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if Supabase is configured
-    if (!supabase) {
-      return NextResponse.json(
-        {
-          error:
-            "Supabase no está configurado. Por favor configura las variables de entorno.",
-        },
-        { status: 500 }
-      );
-    }
-
     const body = await request.json();
     const { nombre, item } = body;
 

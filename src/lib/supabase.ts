@@ -6,17 +6,8 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
 // Validate environment variables
-if (
-  !supabaseUrl ||
-  !supabaseAnonKey ||
-  supabaseUrl === "https://lgntpxtvyginbwjnnxny.supabase.co"
-) {
-  console.warn("Supabase configuration missing or using placeholder values");
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn("Supabase configuration missing");
 }
 
-export const supabase =
-  supabaseUrl &&
-  supabaseAnonKey &&
-  supabaseUrl !== "https://lgntpxtvyginbwjnnxny.supabase.co"
-    ? createClient(supabaseUrl, supabaseAnonKey)
-    : null;
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
