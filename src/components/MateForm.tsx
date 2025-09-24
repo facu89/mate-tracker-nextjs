@@ -36,14 +36,14 @@ const MateForm: React.FC<MateFormProps> = ({
             id="nombre"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900"
             disabled={loading}
           >
-            <option value="">Seleccioná tu nombre</option>
-            <option value="Facundo">Facundo</option>
-            <option value="Mateo">Mateo</option>
-            <option value="Ana">Ana</option>
-            <option value="Axel">Axel</option>
+            <option value="" className="text-gray-500">Seleccioná tu nombre</option>
+            <option value="Facundo" className="text-gray-900">Facundo</option>
+            <option value="Mateo" className="text-gray-900">Mateo</option>
+            <option value="Ana" className="text-gray-900">Ana</option>
+            <option value="Axel" className="text-gray-900">Axel</option>
           </select>
         </div>
 
@@ -58,14 +58,14 @@ const MateForm: React.FC<MateFormProps> = ({
             id="item"
             value={item}
             onChange={(e) => setItem(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900"
             disabled={loading}
           >
-            <option value="">Seleccioná un item</option>
-            <option value="Mate">Mate 🧉</option>
-            <option value="Yerba">Yerba 🌿</option>
-            <option value="Termo">Termo 🌡️</option>
-            <option value="Comida">Comida 🥪</option>
+            <option value="" className="text-gray-500">Seleccioná un item</option>
+            <option value="Mate" className="text-gray-900">Mate 🧉</option>
+            <option value="Yerba" className="text-gray-900">Yerba 🌿</option>
+            <option value="Termo" className="text-gray-900">Termo 🌡️</option>
+            <option value="Comida" className="text-gray-900">Comida 🥪</option>
           </select>
         </div>
 
