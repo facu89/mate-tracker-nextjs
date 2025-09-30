@@ -122,35 +122,48 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Actualizar el puntaje del usuario (upsert)
-    const { error: upsertError } = await supabase
+    // Verificar si el usuario ya existe
+    const { data: existingUser, error: userCheckError } = await supabase
       .from("users")
-      .upsert(
-        {
-          nombre,
-          puntos: 1,
-        },
-        {
-          onConflict: "nombre",
-          ignoreDuplicates: false,
-        }
-      )
-      .select();
+      .select("nombre, puntos")
+      .eq("nombre", nombre)
+      .single();
 
-    if (upsertError) {
-      console.error("Error upserting user:", upsertError);
-      // Incrementar puntos si el usuario ya existe
-      const { error: updateError } = await supabase.rpc(
+    if (userCheckError && userCheckError.code !== "PGRST116") {
+      console.error("Error checking user:", userCheckError);
+      return NextResponse.json(
+        { error: "Error al verificar usuario" },
+        { status: 500 }
+      );
+    }
+
+    if (existingUser) {
+      // El usuario existe, incrementar puntos usando la función SQL
+      const { error: incrementError } = await supabase.rpc(
         "increment_user_points",
         {
           user_name: nombre,
         }
       );
 
-      if (updateError) {
-        console.error("Error incrementing points:", updateError);
+      if (incrementError) {
+        console.error("Error incrementing points:", incrementError);
         return NextResponse.json(
           { error: "Error al actualizar puntos" },
+          { status: 500 }
+        );
+      }
+    } else {
+      // El usuario no existe, crearlo con 1 punto
+      const { error: insertUserError } = await supabase.from("users").insert({
+        nombre,
+        puntos: 1,
+      });
+
+      if (insertUserError) {
+        console.error("Error creating user:", insertUserError);
+        return NextResponse.json(
+          { error: "Error al crear usuario" },
           { status: 500 }
         );
       }
