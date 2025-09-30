@@ -100,7 +100,8 @@ export default function Home() {
             Organización de Mates
           </h1>
           <p className="text-gray-600">
-            ¡Organicemos quién trae qué para el mate!
+            ¡Organicemos quién trae qué para el mate! (Ya arrelgé el sistema de
+            puntos, ahora si suma bien)
           </p>
         </header>
 
