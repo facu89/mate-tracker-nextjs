@@ -29,6 +29,7 @@ const RankingComponent: React.FC<RankingProps> = ({ ranking }) => {
         <span>🏆</span>
         Ranking de Puntos
       </h2>
+      <h3> (Ya arrelgé el sistema de puntos, ahora si suma bien)</h3>
       <div className="space-y-3">
         {rankingArray.map(([nombre, puntos], index) => (
           <div
